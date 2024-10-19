@@ -1,8 +1,12 @@
 import React from 'react'
 
+import BackArrow from './BackArrow'
+
 function Header() {
   return (
-    <div>Header</div>
+    <div className='flex '>
+        <BackArrow />
+        Header</div>
   )
 }
 

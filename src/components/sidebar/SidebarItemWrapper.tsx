@@ -1,21 +1,23 @@
+import { useRouter } from 'next/navigation'
 import React from 'react'
-import { IconType } from 'react-icons'
+
 interface sideBarWrapperProps {
     icon: React.ReactNode,
-    text: string
+    text: string,
+    href: string
 
 }
-function SidebarItemWrapper({icon, text}: sideBarWrapperProps) {
-
+function SidebarItemWrapper({icon, text, href}: sideBarWrapperProps) {
+    const router = useRouter();
   return (
     <>
-    <div className='flex justify-between items-center space-x-2'>
+    <div onClick={() => router.push(href)} className='flex justify-between items-center space-x-2'>
         <div className='
         h-14
         w-14 
         cursor-pointer 
         rounded-lg 
-        hover:bg-blue-300 
+        hover:bg-violet-300 
         hover:bg-opacity-20 
         flex 
         items-center 

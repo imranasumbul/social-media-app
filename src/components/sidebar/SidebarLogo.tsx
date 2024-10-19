@@ -1,12 +1,12 @@
 import React from 'react'
 import { BsTwitter } from 'react-icons/bs'
-import SidebarItemWrapper from './SidebarItemWrapper'
+
 
 
 function SidebarLogo() {
   return (
     <div className='
-        h-8
+        h-14
         w-14 
         cursor-pointer 
         rounded-lg 
