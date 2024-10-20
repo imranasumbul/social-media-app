@@ -36,15 +36,9 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="h-screen bg-dark-bg text-dark-text ">
-          <div className="container xl:px-30 h-full mx-auto max-w-6xl">
-            <div className="grid grid-cols-4 h-full pt-4">
-              <Sidebar />
-              <div className="col-span-3 lg:col-span-2 border-x-[2px] border-neutral-800">
+          
                 {children}
-              </div>
-              <FollowBar/>
-            </div>
-          </div>
+              
         </div>
       </body>
       

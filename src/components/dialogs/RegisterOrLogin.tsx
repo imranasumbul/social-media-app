@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import {
     Dialog,
@@ -8,11 +10,13 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { Button } from '../ui/button'
+import { useRouter } from 'next/navigation'
   
 interface RegisterOrLoginProps{
     triggerItem: React.ReactNode
 }
 function RegisterOrLogin({triggerItem}:RegisterOrLoginProps) {
+    const router = useRouter();
   return (
     <>
     
@@ -25,10 +29,10 @@ function RegisterOrLogin({triggerItem}:RegisterOrLoginProps) {
                 We cannot let you perform this action without signing in
                 </DialogDescription>
                 <div className='flex justify-between'>
-                <Button className='bg-violet-600 w-[45%] text-white hover:bg-violet-800'>
+                <Button onClick={() => router.push("/login")} className='bg-violet-600 w-[45%] text-white hover:bg-violet-800'>
                         Login
                     </Button> 
-                    <Button className='bg-violet-600 w-[45%] hover:bg-violet-800'>
+                    <Button onClick={() => router.push("/signup")} className='bg-violet-600 w-[45%] hover:bg-violet-800'>
                         Sign Up</Button>  
                 </div>
                                  
