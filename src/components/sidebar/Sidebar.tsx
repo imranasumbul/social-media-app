@@ -7,6 +7,7 @@ import SidebarLogo from './SidebarLogo'
 import SidebarItem from './SidebarItem'
 import { BiLogOut } from 'react-icons/bi'
 import SidebartweetBtn from './SidebartweetBtn'
+import RegisterOrLogin from '../dialogs/RegisterOrLogin'
 
 
 function Sidebar() {
@@ -44,7 +45,7 @@ function Sidebar() {
                     )
                     
                 })}
-                <SidebartweetBtn />
+                <RegisterOrLogin triggerItem={<SidebartweetBtn />}/>
             </div>
         </div>
     </div>

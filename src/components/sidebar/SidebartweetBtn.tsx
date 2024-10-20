@@ -6,15 +6,13 @@ import { FaFeather } from 'react-icons/fa'
 
 function SidebartweetBtn() {
     const router = useRouter();
-    function tweetBtnOnClick(){
-        router.push("/hi");
-    }
+    
   return (
         <>
-        <div className='p-4'>
-            <button onClick={tweetBtnOnClick} className=' lg:block hover:bg-violet-800 text-lg rounded-full hidden w-[100%] py-2 bg-violet-600'>Post</button>
-            <div onClick={tweetBtnOnClick} className=' lg:hidden flex justify-center items-center hover:bg-violet-800 rounded-full p-2  bg-violet-600 '>
-                <FaFeather size={24} color='white' />
+        <div className='p-2'>
+            <div className='font-semibold md:block hover:bg-dark-dark-violet text-lg rounded-lg hidden w-[100%] py-1 bg-dark-light-violet'>Post</div>
+            <div className='font-semibold md:hidden flex justify-center items-center hover:bg-dark-dark-violet rounded-full p-2 bg-dark-light-violet '>
+                <FaFeather size={20} />
             </div>
         </div>
         

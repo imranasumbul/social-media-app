@@ -7,3 +7,26 @@
 body{
   @apply h-full bg-black;
 }
+
+:root {
+  
+  --color-dark-bg: rgb(2 6 23);
+  --color-dark-text: rgb(226 232 240);
+  --color-dark-light-violet: rgb(124 58 237);
+  --color-dark-dark-violet: rgb(91 33 182);
+  
+  
+
+  
+}
+
+
+
+@layer base {
+  :root {
+
+
+
+    --radius: 0.5rem
+  }
+}

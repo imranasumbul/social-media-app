@@ -2,11 +2,12 @@ import React from 'react'
 
 import BackArrow from './BackArrow'
 
-function Header() {
+function Header({label}: {label: string}) {
   return (
-    <div className='flex '>
+    <div className='flex items-center border-neutral-700 border-b-[2px]'>
         <BackArrow />
-        Header</div>
+        <span className=''>{label}</span>
+    </div>
   )
 }
 

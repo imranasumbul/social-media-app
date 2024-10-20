@@ -14,7 +14,7 @@ function SidebarItem({label, href, icon:Icon}: sidebarItemProps) {
     
     return (
         
-            <SidebarItemWrapper href={href} icon={<Icon size={28} color='white' />} text={label} />
+            <SidebarItemWrapper href={href} icon={<Icon size={22} />} text={label} />
            
         
     )

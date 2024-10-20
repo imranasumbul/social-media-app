@@ -15,8 +15,8 @@ function SidebarItemWrapper({icon, text, href}: sideBarWrapperProps) {
     <>
     <div onClick={() => router.push(href)} className='flex justify-between items-center space-x-2'>
         <div className='
-        h-14
-        w-14 
+        h-10
+        w-10 
         cursor-pointer 
         rounded-lg 
         hover:bg-violet-300 
@@ -30,8 +30,12 @@ function SidebarItemWrapper({icon, text, href}: sideBarWrapperProps) {
         <div className='
         w-[70%] 
         hidden 
-        lg:block
-        text-lg
+        md:block
+        
+        cursor-pointer
+        hover:text-white
+        
+        transition
         '>
             {text}
         </div>
