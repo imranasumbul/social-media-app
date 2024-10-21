@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
+
   FormField,
   FormItem,
   FormLabel,
@@ -100,7 +100,10 @@ function SignupForm() {
             >
 
             </FormField>
-            <Button type='submit' className=' my-6 bg-dark-light-violet w-[100%] hover:bg-dark-dark-violet'>Submit</Button>
+            <Button type='submit' className=' my-2 bg-dark-light-violet w-[100%] hover:bg-dark-dark-violet'>Submit</Button>
+            <div className='w-[100%] flex justify-center my-2'>
+               <span>Already have an account? <a href='/login' className='underline hover:text-white font-semibold'>Login</a></span>
+            </div>
         </form>
     </Form>
     </>

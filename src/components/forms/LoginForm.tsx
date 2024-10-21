@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -27,8 +26,9 @@ function LoginForm() {
             password: "",
         },
     });
-    function submitHandler() {
-
+    type loginFormvalues = z.infer<typeof loginSchema>
+    function submitHandler(data : loginFormvalues) {
+        console.log(data);
     }
   return (
     <>
@@ -56,7 +56,7 @@ function LoginForm() {
             name='password'
             render={({field}) => {
                 return (
-                    <FormItem>
+                    <FormItem className='my-4' >
                         <FormLabel>
                             Enter your password
                         </FormLabel>
@@ -70,7 +70,10 @@ function LoginForm() {
             >
 
             </FormField>
-            <Button type='submit' className=' my-6 bg-dark-light-violet w-[100%] hover:bg-dark-dark-violet'>Submit</Button>
+            <Button type='submit' className=' my-2 bg-dark-light-violet w-[100%] hover:bg-dark-dark-violet'>Submit</Button>
+            <div className='w-[100%] flex justify-center my-2'>
+               <span>Don't have an account? <a href='/signup' className='underline hover:text-white font-semibold'>Signup</a></span>
+            </div>
         </form>
     </Form>
     </>

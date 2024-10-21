@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Sidebar from "@/components/sidebar/Sidebar";
-import FollowBar from "@/components/followbar/FollowBar";
+
 import "@radix-ui/themes/styles.css";
 
 
