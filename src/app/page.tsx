@@ -1,4 +1,4 @@
-import FormDialog from "@/components/auth_ui/FormDialog";
+
 import FollowBar from "@/components/followbar/FollowBar";
 import Header from "@/components/header/Header";
 import Sidebar from "@/components/sidebar/Sidebar";

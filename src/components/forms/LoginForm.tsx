@@ -72,7 +72,7 @@ function LoginForm() {
             </FormField>
             <Button type='submit' className=' my-2 bg-dark-light-violet w-[100%] hover:bg-dark-dark-violet'>Submit</Button>
             <div className='w-[100%] flex justify-center my-2'>
-               <span>Don't have an account? <a href='/signup' className='underline hover:text-white font-semibold'>Signup</a></span>
+               <span>Don &apos; t have an account? <a href='/signup' className='underline hover:text-white font-semibold'>Signup</a></span>
             </div>
         </form>
     </Form>

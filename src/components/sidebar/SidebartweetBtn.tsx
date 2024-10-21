@@ -1,11 +1,11 @@
 "use client";
 
-import { useRouter } from 'next/navigation'
+
 import React from 'react'
 import { FaFeather } from 'react-icons/fa'
 
 function SidebartweetBtn() {
-    const router = useRouter();
+    
     
   return (
         <>
