@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-
+import Providers from "./providers";
 import "@radix-ui/themes/styles.css";
 
 
@@ -31,15 +31,21 @@ export default async function RootLayout({
   return (
     <html lang="en">
       
+
+     
+      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Providers>
         <div className="h-screen bg-dark-bg text-dark-text ">
           
                 {children}
               
         </div>
+        </Providers>
       </body>
+      
       
       
     </html>

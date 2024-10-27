@@ -21,7 +21,7 @@ export default function Loading() {
       <div className="w-1/3">
         <Progress.Root className="relative overflow-hidden bg-neutral-800 rounded-full w-full h-4">
           <Progress.Indicator
-            className="bg-blue-500 h-full transition-transform ease-in-out"
+            className="bg-dark-dark-violet h-full transition-transform ease-in-out"
             style={{ transform: `translateX(${progress - 100}%)` }}
           />
         </Progress.Root>

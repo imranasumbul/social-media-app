@@ -29,10 +29,10 @@ function RegisterOrLogin({triggerItem}:RegisterOrLoginProps) {
                 We cannot let you perform this action without signing in
                 </DialogDescription>
                 <div className='flex justify-between'>
-                <Button onClick={() => router.push("/login")} className='bg-violet-600 w-[45%] text-white hover:bg-violet-800'>
+                <Button onClick={() => router.push("/login")} className='bg-dark-light-violet w-[45%] text-white hover:bg-dark-dark-violet'>
                         Login
                     </Button> 
-                    <Button onClick={() => router.push("/signup")} className='bg-violet-600 w-[45%] hover:bg-violet-800'>
+                    <Button onClick={() => router.push("/signup")} className='bg-dark-light-violet w-[45%] hover:bg-dark-dark-violet'>
                         Sign Up</Button>  
                 </div>
                                  

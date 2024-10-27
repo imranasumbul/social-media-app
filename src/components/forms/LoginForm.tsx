@@ -1,10 +1,11 @@
 "use client"
 
-import React from 'react'
+import React, {useState} from 'react'
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
+import { signIn } from "next-auth/react"
 import {
   Form,
   FormControl,
@@ -19,6 +20,7 @@ const loginSchema = z.object({
     password: z.string().min(8, {message: "Password should be at least 8 characters long"})
 })
 function LoginForm() {
+    const [error, setError] = useState<string | null>(null);
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -27,8 +29,16 @@ function LoginForm() {
         },
     });
     type loginFormvalues = z.infer<typeof loginSchema>
-    function submitHandler(data : loginFormvalues) {
-        console.log(data);
+    async function submitHandler( data : loginFormvalues) {
+       
+    
+    const result = await signIn("credentials", {
+      redirect: false, 
+      email: data.email,
+      password: data.password,
+    });
+    console.log(result)
+    
     }
   return (
     <>
@@ -39,13 +49,13 @@ function LoginForm() {
             render={({field}) => {
                 return (
                     <FormItem className='my-4'>
-                        <FormLabel>
+                        <FormLabel >
                             Enter your email Address
                         </FormLabel>
                         <FormControl>
-                            <Input {...field} placeholder='Enter email' />
+                            <Input {...field} placeholder='johndoe@gmail.com' />
                         </FormControl>
-                        <FormMessage/>
+                        <FormMessage />
                     </FormItem>
                 )
             }}
@@ -61,7 +71,7 @@ function LoginForm() {
                             Enter your password
                         </FormLabel>
                         <FormControl>
-                            <Input {...field} placeholder='Enter password' />
+                            <Input type='password' {...field} placeholder='password' />
                         </FormControl>
                         <FormMessage/>
                     </FormItem>

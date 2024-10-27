@@ -1,7 +1,15 @@
-
 "use client"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
 
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -16,6 +24,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import axios from 'axios';
+
 const signupSchema = z.object({
     email: z.string().email({ message: "Enter a valid email" }),
   password: z.string().min(8, { message: "Password should be at least 8 characters long" }),
@@ -30,6 +40,7 @@ const signupSchema = z.object({
   }
 })
 function SignupForm() {
+    const [ifUserAlreadyExists, setIfUserAlreadyExists] = useState(false);
     const form = useForm<z.infer<typeof signupSchema>>({
         resolver: zodResolver(signupSchema),
         defaultValues: {
@@ -38,10 +49,32 @@ function SignupForm() {
             confirmPassword: ""
         },
     });
-    function submitHandler() {
+    type registerFormvalues = z.infer< typeof signupSchema >;
+    
+    async function submitHandler(data : registerFormvalues) {
+        try{
+            const response = await axios.post("/api/register", data, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log(response.data);
+
+        }catch(error: any){
+            if (error.response && error.response?.status === 400) {
+                console.log("User already registered.");
+                setIfUserAlreadyExists(true);
+                 // Properly call your dialog function
+            } else {
+                console.error("An unexpected error occurred:", error);
+            }
+        }
+        
+        
 
     }
   return (
+    
     <>
     <Form {...form}>
         <form onSubmit={form.handleSubmit(submitHandler)}>
@@ -72,7 +105,7 @@ function SignupForm() {
                             Enter your password
                         </FormLabel>
                         <FormControl>
-                            <Input {...field} placeholder='Enter password' />
+                            <Input type='password' {...field} placeholder='password' />
                         </FormControl>
                         <FormMessage/>
                     </FormItem>
@@ -91,7 +124,7 @@ function SignupForm() {
                             Confirm your password
                         </FormLabel>
                         <FormControl>
-                            <Input {...field} placeholder='Confirm password' />
+                            <Input type='password' {...field} placeholder='password' />
                         </FormControl>
                         <FormMessage/>
                     </FormItem>
@@ -106,7 +139,22 @@ function SignupForm() {
             </div>
         </form>
     </Form>
+    
+    <Dialog open={ifUserAlreadyExists} onOpenChange={setIfUserAlreadyExists}>
+    <DialogContent className="bg-dark-bg">
+      <DialogHeader>
+        <DialogTitle className="text-dark-text">User Email already exists</DialogTitle>
+        <DialogDescription>
+          Please login to your account to continue
+        </DialogDescription>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
+   
+    
     </>
+    
+    
   )
 }
 
