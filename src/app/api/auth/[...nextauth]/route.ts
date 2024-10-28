@@ -22,7 +22,7 @@ const handler = NextAuth({
                     type: "password"
                 }
             },
-            async authorize(credentials: any){
+            async authorize(credentials){
                 if(!credentials?.email || !credentials?.password){
                     throw new Error("Entered credentials are invalid");
                 }
