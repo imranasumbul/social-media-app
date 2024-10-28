@@ -1,18 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 
+// Declare global variable without using 'namespace' or 'var'
 declare global {
-  // Extend NodeJS.Global interface to include the prisma property
-  namespace NodeJS {
-    interface Global {
-      prisma: PrismaClient | undefined;
-    }
-  }
+  // Use 'let' instead of 'var' for better scope control
+  var prisma: PrismaClient | undefined;
 }
 
-const client = (global as typeof global & { prisma?: PrismaClient }).prisma || new PrismaClient();
+const client = global.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV !== 'production') {
-  (global as typeof global & { prisma?: PrismaClient }).prisma = client;
+  // Assign the client to global.prisma only if it's not in production
+  global.prisma = client;
 }
 
 export default client;
