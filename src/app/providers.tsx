@@ -6,6 +6,7 @@ import React from 'react'
 function providers({children}: {children : React.ReactNode}) {
   return (
     <SessionProvider >
+      
         {children}
     </SessionProvider>
   )

@@ -5,7 +5,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
-import { signIn } from "next-auth/react"
+import { getSession, signIn } from "next-auth/react"
 import {
   Form,
   FormControl,
@@ -15,12 +15,14 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 const loginSchema = z.object({
     email: z.string().email({message: "Enter a valid email"}),
     password: z.string().min(8, {message: "Password should be at least 8 characters long"})
 })
 function LoginForm() {
-    const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -30,14 +32,32 @@ function LoginForm() {
     });
     type loginFormvalues = z.infer<typeof loginSchema>
     async function submitHandler( data : loginFormvalues) {
-       
-    
-    const result = await signIn("credentials", {
-      redirect: false, 
-      email: data.email,
-      password: data.password,
-    });
-    console.log(result)
+       try{
+        const result = await signIn("credentials", {
+            redirect: false, 
+            email: data.email,
+            password: data.password,
+          });
+          console.log(result)
+          if(result?.ok){
+              await getSession();
+              router.push("/");
+      
+          }else{
+            toast.error(`${result?.error}`, {
+                style:  {
+                    background: ' rgba(24, 24, 34, 0.991)',
+                    color: 'rgb(223, 226, 232)',
+                    border: '1px solid white' 
+                }
+            })
+        }
+
+       }catch(err){
+        console.log(err)
+       }
+
+
     
     }
   return (

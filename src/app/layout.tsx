@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "./providers";
 import "@radix-ui/themes/styles.css";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -37,6 +38,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Toaster />
         <Providers>
         <div className="h-screen bg-dark-bg text-dark-text ">
           

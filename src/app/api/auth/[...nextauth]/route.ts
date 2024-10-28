@@ -24,7 +24,7 @@ const handler = NextAuth({
             },
             async authorize(credentials: any){
                 if(!credentials?.email || !credentials?.password){
-                    return null;
+                    throw new Error("Entered credentials are invalid");
                 }
 
                 const user = await prisma.user.findUnique({
@@ -33,7 +33,8 @@ const handler = NextAuth({
                     }
                 })
                 if(!user){
-                    return null;
+                    console.log("no user exists")
+                    throw new Error("No such user exists. Try registering first");
                 }
 
                 const isCorrectPassword = await bcrypt.compare(
@@ -41,7 +42,8 @@ const handler = NextAuth({
                     user.hashedPassword
                 )
                 if(!isCorrectPassword){
-                    return null;
+                    console.log("incorrect password")
+                    throw new Error("Entered credentials are invalid");
                 }
                 return user as any;
 
@@ -49,12 +51,11 @@ const handler = NextAuth({
         })
     ],
     pages: {
-        signIn: "/login"
+        signIn: "/login",
+        signOut: "/logout"
     },
     secret: process.env.NEXTAUTH_SECRET
 
 })
-
-export const GET = handler;
-export const POST = handler;
+export { handler as GET, handler as POST };
 
