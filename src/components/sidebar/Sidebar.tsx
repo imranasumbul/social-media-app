@@ -5,7 +5,7 @@ import { BsBellFill, BsHouseFill } from 'react-icons/bs'
 import { FaUser } from 'react-icons/fa'
 import SidebarLogo from './SidebarLogo'
 import SidebarItem from './SidebarItem'
-import { BiLogOut } from 'react-icons/bi'
+
 import SidebartweetBtn from './SidebartweetBtn'
 import RegisterOrLogin from '../dialogs/RegisterOrLogin'
 import SidebarLogin from './SidebarLogin'

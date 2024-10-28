@@ -50,6 +50,7 @@ function SignupForm() {
                     'Content-Type': 'application/json'
                 }
             });
+            console.log(response);
             toast.success(`User created successfully. Please login to your account to continue`, {
                 duration: 5000,
                 style: {

@@ -4,7 +4,7 @@ import React from 'react'
 import SidebarItemWrapper from './SidebarItemWrapper'
 import { BiLogIn, BiLogOut } from 'react-icons/bi';
 
-import {useSession, signIn, signOut} from "next-auth/react"
+import {useSession} from "next-auth/react"
 function SidebarLogin() {
   const {data : session} = useSession();
   if(session){
