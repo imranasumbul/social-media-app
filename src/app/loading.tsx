@@ -18,7 +18,7 @@ export default function Loading() {
 
   return (
     <div className="flex h-screen items-center justify-center bg-black text-white">
-      <div className="w-1/3">
+      <div className="lg:w-1/3 w-1/2">
         <Progress.Root className="relative overflow-hidden bg-neutral-800 rounded-full w-full h-4">
           <Progress.Indicator
             className="bg-dark-dark-violet h-full transition-transform ease-in-out"
