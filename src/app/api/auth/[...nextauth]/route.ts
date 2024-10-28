@@ -45,7 +45,7 @@ const handler = NextAuth({
                     console.log("incorrect password")
                     throw new Error("Entered credentials are invalid");
                 }
-                return user as any;
+                return user;
 
             }
         })
