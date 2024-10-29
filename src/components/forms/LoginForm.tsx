@@ -5,7 +5,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
-import { getSession, signIn } from "next-auth/react"
+import { getSession, signIn, useSession } from "next-auth/react"
 import {
   Form,
   FormControl,
@@ -30,6 +30,7 @@ function LoginForm() {
             password: "",
         },
     });
+    const session = useSession();
     type loginFormvalues = z.infer<typeof loginSchema>
     async function submitHandler( data : loginFormvalues) {
        try{
@@ -40,8 +41,20 @@ function LoginForm() {
           });
           console.log(result)
           if(result?.ok){
-              await getSession();
+              
+              toast.success("Logged in successfully!", {
+                style: {
+                  background: "rgba(24, 24, 34, 0.991)",
+                  color: "rgb(223, 226, 232)",
+                  border: "1px solid white",
+                },
+              });
+              await getSession(); // Ensure session is updated
+              router.refresh(); // Reload page to get new session
               router.push("/");
+
+              console.log(session)
+             
       
           }else{
             toast.error(`${result?.error}`, {
@@ -56,9 +69,6 @@ function LoginForm() {
        }catch(err){
         console.log(err)
        }
-
-
-    
     }
   return (
     <>
@@ -102,7 +112,7 @@ function LoginForm() {
             </FormField>
             <Button type='submit' className=' my-2 bg-dark-light-violet w-[100%] hover:bg-dark-dark-violet'>Submit</Button>
             <div className='w-[100%] flex justify-center my-2'>
-               <span>Don &apos; t have an account? <a href='/signup' className='underline hover:text-white font-semibold'>Signup</a></span>
+               <span>Don&apos;t have an account? <a href='/signup' className='underline hover:text-white font-semibold'>Signup</a></span>
             </div>
         </form>
     </Form>

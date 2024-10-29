@@ -2,8 +2,6 @@ import bcrypt from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-
-
 import prisma from "@/lib/prismadb";
 
 
@@ -45,11 +43,22 @@ const handler = NextAuth({
                     console.log("incorrect password")
                     throw new Error("Entered credentials are invalid");
                 }
-                return user;
+                console.log(user)
+                return {
+                    id: user.id,
+                    image: user.image,
+                    email: user.email,
+                    emailVerified: user.emailVerified,
+                    username: user.username,
+                    name: user.name
+                }
 
             }
         })
     ],
+    session: {
+        strategy: 'jwt',
+    },
     pages: {
         signIn: "/login",
         signOut: "/logout"
