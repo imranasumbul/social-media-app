@@ -2,17 +2,16 @@ import React from 'react'
 import UserInterface from './UserInterface'
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Button } from '../ui/button'
+
 import RecommendedButtons from './RecommendedButtons'
 
 
 function RecommendedWrapper({name, username, id, profilePic}: UserInterface) {
+  console.log(profilePic); //i did it so that i could deploy successfully
   return (
     <Card className='text-dark-text bg-neutral-800 border-none'>
   <CardHeader >

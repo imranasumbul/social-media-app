@@ -8,7 +8,7 @@ import UserInterface from './UserInterface';
 
 
 function Recommended() {
-    const {data, isLoading, error} = useSWR<UserInterface[] | undefined>("/api/users", fetcher);
+    const {data} = useSWR<UserInterface[] | undefined>("/api/users", fetcher);
     if(data?.length == 0){
         return null;
     }
@@ -19,7 +19,7 @@ function Recommended() {
                 
                 { data?.map((user:UserInterface) => {
                     return (
-                    <RecommendedWrapper id={user.id} name={user.name} username={user.username} profilePic={user.profilePic} />            
+                    <RecommendedWrapper key={user.id} id={user.id} name={user.name} username={user.username} profilePic={user.profilePic} />            
                 )
                 })
                 }
