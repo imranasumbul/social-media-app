@@ -18,7 +18,7 @@ function RecommendedWrapper({name, username, id, profilePic}: UserInterface) {
     <div className='flex space-x-2'>
       <div className='h-7 w-7 rounded-full bg-red-300'></div>
       <div className='mb-2'>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle className='font-normal'>{name}</CardTitle>
         <CardDescription>{username} </CardDescription>
       </div>
       
