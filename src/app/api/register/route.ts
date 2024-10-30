@@ -17,7 +17,7 @@ async function generateUniqueUsername() {
         separator: '_',
         style: "lowerCase",
       });
-      const randomNumber = Math.floor(Math.random() * 100000); // 0-99999
+      const randomNumber = Math.floor(Math.random() * 10000); // 0-99999
       username = `${username}_${randomNumber}`;
       const existingUser = await prisma.user.findUnique({
         where: { username },

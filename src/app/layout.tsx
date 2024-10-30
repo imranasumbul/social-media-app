@@ -39,8 +39,8 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Toaster />
-        <Providers>
-        <div className="h-screen bg-dark-bg text-dark-text ">
+        <Providers >
+        <div className="min-h-screen bg-dark-bg text-dark-text ">
           
                 {children}
               
