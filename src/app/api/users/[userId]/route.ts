@@ -9,6 +9,14 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
         const existingUser = await prisma.user.findUnique({
             where: {
                 id: userId
+            },
+            select: {
+                hashedPassword: false,
+                followingIds: true,
+                name: true,
+                username: true,
+                bio: true,
+                profileImage: true
             }
         })
         const followersCount = await prisma.user.count({
@@ -18,7 +26,8 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
                 }
             }
         })
-        return NextResponse.json({...existingUser, followersCount}, {status: 200});
+        const followingCount = existingUser?.followingIds.length;
+        return NextResponse.json({...existingUser, followersCount, followingCount}, {status: 200});
 
     }catch(e){
         console.log(e);

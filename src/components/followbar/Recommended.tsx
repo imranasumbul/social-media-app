@@ -1,25 +1,32 @@
 "use client"
 
-import fetcher from '@/lib/fetcher';
-import React from 'react'
-import useSWR from 'swr'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import RecommendedWrapper from './RecommendedWrapper';
-import UserInterface from './UserInterface';
+import { UserInterface } from './UserInterface';
+
 
 
 function Recommended() {
-    const {data} = useSWR<UserInterface[] | undefined>("/api/users", fetcher);
-    if(data?.length == 0){
-        return null;
-    }
+    const [recommendedUsers, setRecommendedUsers] = useState([]);
+    useEffect(() => {
+        axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`).then((data) => {
+            const users = data.data;
+            setRecommendedUsers(users);
+           
+        });
+    }, []);
+    
+    
+    
     return (
         <>
             <div className='flex flex-col my-4 space-y-4'>
 
                 
-                { data?.map((user:UserInterface) => {
+                { recommendedUsers?.map((user : UserInterface) => {
                     return (
-                    <RecommendedWrapper key={user.id} id={user.id} name={user.name} username={user.username} profilePic={user.profilePic} />            
+                    <RecommendedWrapper key={user.id} id={user.id} name={user.name} username={user.username} profileImage={user.profileImage} />            
                 )
                 })
                 }

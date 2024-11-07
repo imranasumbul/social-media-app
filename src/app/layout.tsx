@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Providers from "./providers";
+
 import "@radix-ui/themes/styles.css";
-import { Toaster } from "react-hot-toast";
 
-
+import ConditionalLayout from "./conditionalLayout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +27,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  
   return (
     <html lang="en">
       
@@ -38,14 +37,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Toaster />
-        <Providers >
-        <div className="min-h-screen bg-dark-bg text-dark-text ">
-          
-                {children}
-              
-        </div>
-        </Providers>
+        <ConditionalLayout>
+          {children}
+        </ConditionalLayout>
       </body>
       
       

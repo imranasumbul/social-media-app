@@ -1,8 +1,6 @@
-interface UserInterface {
+export interface UserInterface {
     name: string,
     username: string,
-    id: string,
-    profilePic: string
+    profileImage: string|null,
+    id: string
 }
-
-export default UserInterface

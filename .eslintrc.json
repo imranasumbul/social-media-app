@@ -2,7 +2,15 @@
   "extends": ["next/core-web-vitals", "next/typescript"],
   "overrides": [{
       "files": ["*.ts", "*.tsx"],
+      
       "parser": "@typescript-eslint/parser"
+    },
+    {
+      "files": ["**/next-auth.d.ts"],  // Targeting only next-auth.d.ts
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",  // Disable the unused-vars rule
+        "@typescript-eslint/no-explicit-any": "off"  // Optional: Disable explicit-any rule
+      }
     }
   ],
   "rules": {

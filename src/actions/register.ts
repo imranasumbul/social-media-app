@@ -1,9 +1,9 @@
 
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import prisma from "@/lib/prismadb"
 
 import { uniqueNamesGenerator, adjectives, animals, names , colors } from "unique-names-generator";
-import { NextRequest, NextResponse } from "next/server";
+
 
 
 async function generateUniqueUsername() {
@@ -28,9 +28,9 @@ async function generateUniqueUsername() {
     return username;
   }
 
-export async function POST(req: NextRequest){
+export async function register(email: string, password : string){
     try{
-        const {email, password} = await req.json();
+        
         const userExists = await prisma.user.findUnique({
           where: {
             email
@@ -38,11 +38,11 @@ export async function POST(req: NextRequest){
         })
         if(userExists){
           
-          return NextResponse.json({error: "User already exists. Login to your account"}, {status: 400})
+          return {message: "User already exists. Try logging in"}
         }
         const hashedPassword = await bcrypt.hash(password, 12);
         const username = await generateUniqueUsername();
-        const user = await prisma.user.create({
+        await prisma.user.create({
             data: {
                 email,
                 hashedPassword,
@@ -57,16 +57,9 @@ export async function POST(req: NextRequest){
             }
         })
 
-        return NextResponse.json({
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          username: user.username,
-          bio: user.bio,
-          profileImage: user.profileImage
-        }, {status: 200});
+        return {message: "User created successfully"}
     }catch(e){
         console.log("error", e);
-        return NextResponse.json({error: "Some error happened"}, {status: 400})
+        return {message: "An unexpected error occured. Please try later"}
     }
 }

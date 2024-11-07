@@ -44,7 +44,10 @@ function SidebarLogin() {
 
   return (
     
-<div onClick={() => signIn()} className='flex justify-between items-center space-x-2'>
+<div onClick={() => {
+  console.log("kiki");
+  signIn();
+}} className='flex justify-between items-center space-x-2'>
       <div className='
       h-10
       w-10 

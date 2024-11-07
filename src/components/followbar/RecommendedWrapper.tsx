@@ -1,5 +1,6 @@
+
 import React from 'react'
-import UserInterface from './UserInterface'
+import { UserInterface } from './UserInterface';
 import {
   Card,
   CardDescription,
@@ -8,10 +9,11 @@ import {
 } from "@/components/ui/card"
 
 import RecommendedButtons from './RecommendedButtons'
+//import { useSession } from 'next-auth/react';
 
-
-function RecommendedWrapper({name, username, id, profilePic}: UserInterface) {
-  console.log(profilePic); //i did it so that i could deploy successfully
+function RecommendedWrapper({name, username, id, profileImage}: UserInterface) {
+  console.log(profileImage); //i did it so that i could deploy successfully
+  //const session = useSession();
   return (
     <Card className='text-dark-text bg-neutral-800 border-none'>
   <CardHeader >
@@ -19,12 +21,13 @@ function RecommendedWrapper({name, username, id, profilePic}: UserInterface) {
       <div className='h-7 w-7 rounded-full bg-red-300'></div>
       <div className='mb-2'>
         <CardTitle className='font-normal'>{name}</CardTitle>
-        <CardDescription>{username} </CardDescription>
+        <CardDescription className='text-neutral-400'>{username} </CardDescription>
       </div>
       
     </div>
     
-    <RecommendedButtons userId={id}/>
+    <RecommendedButtons userId={id} />
+    
     
   </CardHeader>
   
