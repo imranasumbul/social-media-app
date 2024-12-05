@@ -9,7 +9,7 @@ body{
 }
 
 :root {
-  
+  --color-dark-card : rgb(38 38 38);
   --color-dark-bg: rgba(24, 24, 34, 0.991);
   --color-dark-text: rgb(223, 226, 232);
   --color-dark-light-violet: rgb(124 58 237);

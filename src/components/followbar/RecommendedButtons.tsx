@@ -2,19 +2,20 @@
 import { useRouter } from 'next/navigation'
 
 import React from 'react'
+import { Button } from '../ui/button';
 
 function RecommendedButtons({userId}: {userId?: string}) {
     const router = useRouter();
   return (
     <>
-    <button onClick={() => {
+    <Button onClick={() => {
       router.push(`/user/${userId}`);
       
     }}
-     className='bg-dark-light-violet text-white py-1 hover:bg-dark-dark-violet rounded-lg'
+     
         
         >View Profile
-    </button>
+    </Button>
     </>
   )
 }

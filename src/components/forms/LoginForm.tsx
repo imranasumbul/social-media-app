@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
+import reactToast from '@/lib/reactToast';
 const loginSchema = z.object({
     email: z.string().email({message: "Enter a valid email"}),
     password: z.string().min(8, {message: "Password should be at least 8 characters long"})
@@ -42,13 +42,9 @@ function LoginForm() {
           console.log(result)
           if(result?.ok){
               
-              toast.success("Logged in successfully!", {
-                style: {
-                  background: "rgba(24, 24, 34, 0.991)",
-                  color: "rgb(223, 226, 232)",
-                  border: "1px solid white",
-                },
-              });
+            reactToast({message: `Logged in successfully`, type: "success", duration: 5000})
+            
+              
               await getSession(); // Ensure session is updated
               router.refresh(); // Reload page to get new session
               router.push("/");
@@ -57,17 +53,15 @@ function LoginForm() {
              
       
           }else{
-            toast.error(`${result?.error}`, {
-                style:  {
-                    background: ' rgba(24, 24, 34, 0.991)',
-                    color: 'rgb(223, 226, 232)',
-                    border: '1px solid white' 
-                }
-            })
+            
+            reactToast({message: `${result?.error}`, type: "error", duration: 5000})
+            
         }
 
        }catch(err){
-        console.log(err)
+        console.log(err);
+        reactToast({message: `An unexpected error occured. Please try later.`, type: "error", duration: 5000})
+            
        }
     }
   return (

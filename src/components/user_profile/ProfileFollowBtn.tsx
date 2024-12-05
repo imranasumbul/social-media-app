@@ -1,13 +1,14 @@
 "use client"
 
 import React from 'react'
+import { Button } from '../ui/button'
 
 
 function ProfileFollowBtn() {
   
   return (
     <>
-     <button className='bg-dark-light-violet rounded-lg hover:bg-dark-dark-violet py-1 w-[90px]'>Follow</button>
+     <Button className=' w-[90px]'>Follow</Button>
     </>
   )
 }

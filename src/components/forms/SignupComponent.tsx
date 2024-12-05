@@ -16,7 +16,7 @@ export default function SignupComponent() {
     return (
         <>
         <div className='h-screen flex justify-center items-center '>
-        <Card className='bg-dark-bg md:w-[60%] xl:w-[30%] lg:w-[40%] shadow-lg shadow-neutral-800 text-dark-text'>
+        <Card className=' md:w-[60%] xl:w-[30%] lg:w-[40%] shadow-lg border-none text-dark-text'>
       <CardHeader>
         <CardTitle className='text-center text-xl'>Sign Up </CardTitle>
             

@@ -20,8 +20,7 @@ model User {
   name String
   username String @unique
   bio String?
-  image String?
-  coverImage String?
+  
   profileImage String?
   hashedPassword String
   createdAt DateTime @default(now())

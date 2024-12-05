@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-			
-		'dark-bg': 'var(--color-dark-bg)',
+        'dark-card': 'var(--color-dark-card)',
+		    'dark-bg': 'var(--color-dark-bg)',
         'dark-text': 'var(--color-dark-text)',
         'dark-light-violet': 'var(--color-dark-light-violet)',
         'dark-dark-violet': 'var(--color-dark-dark-violet)',

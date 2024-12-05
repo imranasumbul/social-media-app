@@ -1,5 +1,4 @@
 
-
 import React from 'react'
 import { BsBellFill, BsHouseFill } from 'react-icons/bs'
 import { FaUser } from 'react-icons/fa'
@@ -10,9 +9,8 @@ import SidebartweetBtn from './SidebartweetBtn'
 import RegisterOrLogin from '../dialogs/RegisterOrLogin'
 import SidebarLogin from './SidebarLogin'
 
-
 function Sidebar() {
-    
+   
     const items = [
         {
             label: "Home",
@@ -31,7 +29,7 @@ function Sidebar() {
         }
     ]
   return (
-    <div className='col-span-1 h-full sm:pr-6'>
+    <div className=' col-span-1 h-full sm:pr-6'>
         <div className='flex flex-col items-end'>
             <div className='space-y-2 flex flex-col justify-center lg:w-[230px]'>
                 <SidebarLogo/>
@@ -41,6 +39,7 @@ function Sidebar() {
                     )
                     
                 })}
+                
                 <SidebarLogin />
                 <RegisterOrLogin triggerItem={<SidebartweetBtn />}/>
             </div>

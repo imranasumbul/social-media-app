@@ -1,7 +1,4 @@
 "use client"
-
-
-import {toast} from "react-hot-toast"
 import React from 'react'
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -18,11 +15,12 @@ import {
 import { Input } from "@/components/ui/input"
 import axios from 'axios';
 import { useRouter } from "next/navigation"
+import reactToast from "@/lib/reactToast";
 
 const signupSchema = z.object({
     email: z.string().email({ message: "Enter a valid email" }),
-  password: z.string().min(8, { message: "Password should be at least 8 characters long" }),
-  confirmPassword: z.string().min(8, { message: "Confirm password must match password" }),
+    password: z.string().min(8, { message: "Password should be at least 8 characters long" }),
+    confirmPassword: z.string().min(8, { message: "Confirm password must match password" }),
 }).superRefine((data, ctx) => {
   if (data.password !== data.confirmPassword) {
     ctx.addIssue({
@@ -51,30 +49,21 @@ function SignupForm() {
                 }
             });
             console.log(response);
-            toast.success(`User created successfully. Please login to your account to continue`, {
-                duration: 5000,
-                style: {
-                    background: ' rgba(24, 24, 34, 0.991)',
-                    color: 'rgb(223, 226, 232)',
-                    border: '1px solid white' 
-                }
-            })
+            reactToast({message: `User created successfully. Please login to your account to continue`, type: "success", duration: 5000})
+            
             router.push("/login");
         }catch(error){
             console.log(error);
             if(axios.isAxiosError(error) && error.response){
-                console.log(error.response);
-                toast.error(`${error.response.data.error}`, {
-                    duration: 5000,
-                    style: {
-                        background: ' rgba(24, 24, 34, 0.991)',
-                        color: 'rgb(223, 226, 232)',
-                        border: '1px solid white' 
-                    }
-                })
+                
+            reactToast({message: `${error.response.data.error}`, type: "error", duration: 5000})
+            
                 router.push("/login");
             }else{
-                toast.error("an unexpected error occured. Please try some time later")
+                
+            reactToast({message: `An unexpected error occured. Please try later`, type: "error", duration: 5000})
+            
+
             }
         }
     }
@@ -87,7 +76,7 @@ function SignupForm() {
                     render={({field}) => {
                         return (
                             <FormItem className='my-4'>
-                                <FormLabel>
+                                <FormLabel >
                                     Enter your email Address
                                 </FormLabel>
                                 <FormControl>
@@ -136,7 +125,7 @@ function SignupForm() {
                     }}
                     >
                     </FormField>
-                    <Button type='submit' className=' my-2 bg-dark-light-violet w-[100%] hover:bg-dark-dark-violet'>Submit</Button>
+                    <Button type='submit' className=' bg-dark-light-violet w-[100%] hover:bg-dark-dark-violet'>Submit</Button>
                     <div className='w-[100%] flex justify-center my-2'>
                     <span>Already have an account? <a href='/login' className='underline hover:text-white font-semibold'>Login</a></span>
                     </div>

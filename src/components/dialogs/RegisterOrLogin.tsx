@@ -22,7 +22,7 @@ function RegisterOrLogin({triggerItem}:RegisterOrLoginProps) {
     
         <Dialog >
             <DialogTrigger>{triggerItem}</DialogTrigger>
-            <DialogContent className='bg-dark-bg'>
+            <DialogContent >
                 <DialogHeader>
                 <DialogTitle className='text-white'>Login to continue</DialogTitle>
                 <DialogDescription>

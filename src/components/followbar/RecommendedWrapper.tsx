@@ -15,13 +15,13 @@ function RecommendedWrapper({name, username, id, profileImage}: UserInterface) {
   console.log(profileImage); //i did it so that i could deploy successfully
   //const session = useSession();
   return (
-    <Card className='text-dark-text bg-neutral-800 border-none'>
+    <Card className='text-dark-text '>
   <CardHeader >
     <div className='flex space-x-2'>
-      <div className='h-7 w-7 rounded-full bg-red-300'></div>
+      <div className='h-6 w-6 rounded-full bg-red-300'></div>
       <div className='mb-2'>
         <CardTitle className='font-normal'>{name}</CardTitle>
-        <CardDescription className='text-neutral-400'>{username} </CardDescription>
+        <CardDescription className='text-neutral-400 text-sm'>{username} </CardDescription>
       </div>
       
     </div>

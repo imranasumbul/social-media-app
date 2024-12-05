@@ -1,8 +1,9 @@
 import bcrypt from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { SessionStrategy } from "next-auth";
+import { Session, SessionStrategy } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prismadb";
+import { JWT } from "next-auth/jwt";
 const authOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
@@ -41,14 +42,16 @@ const authOptions = {
                     console.log("incorrect password")
                     throw new Error("Entered credentials are invalid");
                 }
-                console.log(user)
+                
                 return {
                     id: user.id,
-                    image: user.image,
+                    profileImage: user.profileImage,
                     email: user.email,
                     emailVerified: user.emailVerified,
                     username: user.username,
-                    name: user.name
+                    name: user.name,
+                    bio: user.bio,
+                    createdAt: user.createdAt
                 }
 
             }
@@ -63,22 +66,35 @@ const authOptions = {
         signOut: "/logout"
     },
     secret: process.env.NEXTAUTH_SECRET,
-    // callbacks: {
-    //     async jwt({ token, user }: any) {
-    //         if (user) {
-    //             token.userId = user.id; // Assuming the user object has an `id` field
-    //         }
-    //         console.log(user, "hi")
-    //         console.log(token, "hi")
-    //         return token;
-    //     },
-    //     // session: ({ session, token }: {session: Session, token: typeof JWT}) => {
-    //     //     // if(session && token && session.user){
+    callbacks: {
+        async jwt({ token, user }: {token: JWT, user: any}) {
+            
+            if (user) {
+                console.log(token, 'lala');
+                token.userId = user.id;
                 
-    //     //     // }
-    //     //     return session
-    //     // }
-    // }
+                token.username = user.username;
+                token.profileImage = user.profileImage;
+                token.bio = user.bio;
+                console.log(token, 'lala');
+            }
+            return token;
+        },
+
+        async session({ session, token }: {session: Session, token: JWT}) {
+            
+            if (session.user && token.userId) {
+                session.user.id = token.userId as string;
+                session.user.username = token.username as string;
+                session.user.profileImage = token.profileImage as string|null;
+                session.user.bio = token.bio as string;
+                
+            }
+            
+        
+            return session;
+        }
+    },
 
 }
 
